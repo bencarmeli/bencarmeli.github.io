@@ -7,19 +7,45 @@
     <title>Carmeli Shopping List</title>
 </head>
 <body>
-
     <div class="container">
-        <h1>Carmeli Shopping List</h1>
-        <ul id="shopping-list">
-            <li>Milk</li>
-            <li>Bread</li>
-            <li>Eggs</li>
-            <li>Cheese</li>
-            <li>Fruits</li>
-        </ul>
-        <input type="text" id="new-item" placeholder="Add new item">
-        <button id="add-item">Add Item</button>
+        <div class="box">
+            <h2>Carmeli Shopping List</h2>
+            <form id="grocery">
+                <input id="writeList" type="text" placeholder="Add new item" required>
+                <button type="submit">Add Item</button>
+            </form>
+        </div>
+        <ol></ol>
     </div>
+    <script>
+        let grocery = document.getElementById("grocery");
+        grocery.addEventListener('submit', addItem);
+        function addItem(e){
+            e.preventDefault();
+            let data = this.elements.writeList.value;
+            let list = document.querySelector("ol");
+            let item = document.createElement("li");
+            let text = document.createElement("p");
 
+            text.textContent = data;
+            this.elements.writeList.value = "";
+            item.append(text);
+            list.append(item);
+
+            let rmvBtn = document.createElement('span');
+            rmvBtn.classList.add('remove');
+            item.append(rmvBtn);
+            rmvBtn.addEventListener('click', deleteItem);
+            item.addEventListener('click', doneItem);
+        }
+
+        function deleteItem(e){
+            this.parentElement.remove();
+        }
+        
+        function doneItem(e){
+            this.classList.toggle('done');
+        }
+    </script>
 </body>
 </html>
