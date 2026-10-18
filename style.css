@@ -106,7 +106,7 @@ body
     right: 35px;
     width: 25px;
     height: 25px;
-    background: url(gone.png);
+    background: url(done-icon.png);
     background-size: cover;
     border-radius: 50%;
     cursor: pointer;
